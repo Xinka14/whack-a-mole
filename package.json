@@ -4,10 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky",
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "format": "prettier . -w",
     "lint": "eslint"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier .",
+      "eslint"
+    ]
   },
   "dependencies": {
     "vue": "^3.5.24"
@@ -22,6 +29,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.6.2",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
