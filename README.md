@@ -1,5 +1,75 @@
-# Vue 3 + TypeScript + Vite
+# Whack-A-Mole
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+一个打地鼠游戏
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 工程
+
+### 项目结构
+
+- 后端: 无
+- 前端: SPA
+
+### 运行时环境
+
+在手机或平板上以PWA的方式安装及运行
+
+### 技术栈
+
+- 语言: JavaScript
+- 开发工具: Vite
+- 框架: Vue
+- 主要的第三方库
+  - Tailwind CSS
+
+### 部署
+
+部署到Github Pages
+
+## 功能
+
+主要有以下三个页面
+
+### 开始页面
+
+- 有一个背景图片
+- 有一个标题和一小段文字介绍
+- 有一个开始按钮，点击后进入游戏页面
+
+### 游戏页面
+
+进入游戏页面后显示倒计时3秒，结束后正式开始游戏
+
+- 地洞
+  - m行n列，共计m*n个地洞
+- 地鼠
+  - 地鼠将随机从地洞中出现
+  - 一共有3种地鼠，得分越高的地鼠停留时间越短
+- 击打判定
+  - PC端: click事件
+  - 手机端: tap事件
+- 击打特效
+  - 被击打时地鼠的图片替换为被击打的样子
+  - 被击打时播放击打成功的音效
+- 地鼠的出现间隔
+  - 开始时出现间隔较长
+  - 后期出现间隔变短
+- 一局的地鼠总个数为60个
+  - 低难度地鼠: 30个
+  - 中难度地鼠: 20个
+  - 高难度地鼠: 10个
+
+### 结算页面
+
+- 游戏结束后显示计分，显示3种地鼠分别击打的个数，最后显示总得分
+- 有一个再来一次的按钮，点击后返回开始页面
+
+## 开发
+
+### 常数
+
+用到的各种常数，比如以下的例子，都定义在常数文件中，方便修改
+
+- 地鼠出现间隔时间
+- 一局的地鼠个数
+- 各种地鼠的停留时间
+- 各种地鼠的得分
