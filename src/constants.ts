@@ -28,7 +28,7 @@ export const INTERVAL_SLOPE = 0.5;
 export const MOLE_CONFIGS = {
   easy: {
     duration: 800,
-    score: 10,
+    score: 1,
     type: 'easy',
     img: {
       normal: easy1,
@@ -38,7 +38,7 @@ export const MOLE_CONFIGS = {
   },
   medium: {
     duration: 750,
-    score: 20,
+    score: 2,
     type: 'medium',
     img: {
       normal: medium1,
@@ -48,7 +48,7 @@ export const MOLE_CONFIGS = {
   },
   hard: {
     duration: 700,
-    score: 30,
+    score: 3,
     type: 'hard',
     img: {
       normal: hard1,
@@ -68,19 +68,19 @@ export const HOLE_COOLDOWN = 100; // ms
 export const RANK_CONFIGS = [
   {
     min: 0,
-    max: 600,
+    max: 60,
     icon: '🥉',
     prize: '1万',
   },
   {
-    min: 601,
-    max: 850,
+    min: 61,
+    max: 85,
     icon: '🥈',
     prize: '2万',
   },
   {
-    min: 851,
-    max: 1000,
+    min: 86,
+    max: 100,
     icon: '🥇',
     prize: '5万',
   },
