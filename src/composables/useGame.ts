@@ -184,7 +184,7 @@ export function useGame(
     });
     playSound(mole.type);
     window.setTimeout(() => hideMole(mole), MOLE_HIT_DURATION);
-    console.log(`地鼠${mole.id}被打中了`);
+    // console.log(`地鼠${mole.id}被打中了`);
   }
 
   return {

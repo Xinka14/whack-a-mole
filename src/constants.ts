@@ -1,16 +1,16 @@
 // 游戏常数配置
 
 // images
-import easy1 from './assets/easy_1.png';
-import easy2 from './assets/easy_2.png';
-import medium1 from './assets/medium_1.png';
-import medium2 from './assets/medium_2.png';
-import hard1 from './assets/hard_1.png';
-import hard2 from './assets/hard_2.png';
+import sk1 from './assets/sk_1.png';
+import sk2 from './assets/sk_2.png';
+import sx1 from './assets/sx_1.png';
+import sx2 from './assets/sx_2.png';
+import yy1 from './assets/yy_1.png';
+import yy2 from './assets/yy_2.png';
 // sounds
-import easy from './assets/easy.mp3';
-import medium from './assets/medium.mp3';
-import hard from './assets/hard.mp3';
+import sk from './assets/sk.mp3';
+import sx from './assets/sx.mp3';
+import yy from './assets/yy.mp3';
 
 // 地鼠配置
 export const TOTAL_MOLES = 60; // 一局总地鼠数
@@ -31,30 +31,30 @@ export const MOLE_CONFIGS = {
     score: 1,
     type: 'easy',
     img: {
-      normal: easy1,
-      hit: easy2,
+      normal: sk1,
+      hit: sk2,
     },
-    sound: easy,
+    sound: sk,
   },
   medium: {
     duration: 750,
     score: 2,
     type: 'medium',
     img: {
-      normal: medium1,
-      hit: medium2,
+      normal: sx1,
+      hit: sx2,
     },
-    sound: medium,
+    sound: sx,
   },
   hard: {
     duration: 700,
     score: 3,
     type: 'hard',
     img: {
-      normal: hard1,
-      hit: hard2,
+      normal: yy1,
+      hit: yy2,
     },
-    sound: hard,
+    sound: yy,
   },
 };
 export const MOLE_HIT_DURATION = 200;
