@@ -3,7 +3,7 @@ import { TOTAL_MOLES, EASY_MOLES, MEDIUM_MOLES, HARD_MOLES, INTERVAL_SLOPE, MIN_
 import { assertNotNull, createArrayByRange, getRandomElement, sleep } from '../utils';
 import { useSound } from './useSound';
 
-const { initSounds, playSound } = useSound();
+const { initSounds, playSound, playBgm, stopBgm } = useSound();
 
 export interface GameState {
   countdown: number;
@@ -66,6 +66,7 @@ export function useGame(
   });
 
   function resetGame() {
+    stopBgm();
     state.value = structuredClone(initState);
     state.value.holes = createArrayByRange(HOLE_ROWS * HOLE_COLS).map((id) => generateHole(id));
     clearInterval(timer);
@@ -116,6 +117,7 @@ export function useGame(
   }
 
   async function startGame() {
+    playBgm();
     state.value.isCountingDown = false;
     state.value.isGameStarted = true;
 

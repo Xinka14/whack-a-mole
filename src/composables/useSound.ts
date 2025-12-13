@@ -1,9 +1,11 @@
 import { MOLE_CONFIGS } from '../constants';
 import { MoleTypes, type MoleType } from './useGame';
+import bgm from '../assets/bgm.mp3';
 
 export function useSound() {
   let audioContext: AudioContext | null = null;
   const buffers = new Map<MoleType, AudioBuffer>();
+  let bgmSource: AudioBufferSourceNode | null = null;
   let initialized = false;
 
   async function initSounds() {
@@ -54,8 +56,37 @@ export function useSound() {
     source.start(0); // 叠加播放关键点
   }
 
+  async function playBgm() {
+    if (audioContext === null) {
+      return;
+    }
+    const res = await fetch(bgm);
+    const arrayBuffer = await res.arrayBuffer();
+    const buffer = await audioContext.decodeAudioData(arrayBuffer);
+
+    bgmSource = audioContext.createBufferSource();
+    bgmSource.buffer = buffer;
+    bgmSource.loop = true;
+
+    const bgmGain = audioContext.createGain();
+    bgmSource.connect(bgmGain);
+    bgmGain.connect(audioContext.destination);
+
+    bgmSource.start(0);
+  }
+
+  function stopBgm() {
+    if (bgmSource === null) {
+      return;
+    }
+
+    bgmSource.stop();
+  }
+
   return {
     initSounds,
     playSound,
+    playBgm,
+    stopBgm,
   };
 }
