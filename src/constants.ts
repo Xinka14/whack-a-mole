@@ -8,25 +8,25 @@ export const HARD_MOLES = 10; // 高难度地鼠
 
 // 出现间隔
 export const MAX_INTERVAL = 1000;
-export const MIN_INTERVAL = 200;
+export const MIN_INTERVAL = 400;
 export const INTERVAL_SLOPE = 0.5;
 
 // 地鼠难度配置（停留时间 ms，得分）
 export const MOLE_CONFIGS = {
   easy: {
-    duration: 800,
+    duration: 900,
     score: 10,
     type: 'easy',
     color: '#90EE90',
   },
   medium: {
-    duration: 600,
+    duration: 750,
     score: 20,
     type: 'medium',
     color: '#FFD700',
   },
   hard: {
-    duration: 400,
+    duration: 600,
     score: 50,
     type: 'hard',
     color: '#FF6347',
