@@ -63,3 +63,25 @@ export const MOLE_HIT_DURATION = 200;
 export const HOLE_ROWS = 5;
 export const HOLE_COLS = 3;
 export const HOLE_COOLDOWN = 100; // ms
+
+// 奖励配置
+export const RANK_CONFIGS = [
+  {
+    min: 0,
+    max: 600,
+    icon: '🥉',
+    prize: '1万',
+  },
+  {
+    min: 601,
+    max: 850,
+    icon: '🥈',
+    prize: '2万',
+  },
+  {
+    min: 851,
+    max: 1000,
+    icon: '🥇',
+    prize: '5万',
+  },
+];

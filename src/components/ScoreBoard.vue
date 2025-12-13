@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { MoleTypes, type GameState } from '../composables/useGame';
-import { MOLE_CONFIGS } from '../constants';
+import { MOLE_CONFIGS, RANK_CONFIGS } from '../constants';
 
 interface Props {
   state: GameState;
@@ -41,27 +41,15 @@ const isInRange = computed(() => (min: number, max: number) => {
     <hr />
     <div class="text-right px-4">{{ score }}</div>
     <div class="flex-1"></div>
-    <div class="flex justify-between items-center text-right px-4" :class="isInRange(0, 500) ? ['animate-bounce'] : []">
-      <p class="w-10">0</p>
-      <p>〜</p>
-      <p>500</p>
-      <p class="text-2xl">🥉</p>
-      <p class="w-10">1万</p>
-    </div>
-    <div class="flex justify-between items-center text-right px-4" :class="isInRange(501, 800) ? ['animate-bounce'] : []">
-      <p class="w-10">501</p>
-      <p>〜</p>
-      <p>800</p>
-      <p class="text-2xl">🥈</p>
-      <p class="w-10">2万</p>
-    </div>
-    <div class="flex justify-between items-center text-right px-4" :class="isInRange(801, 1000) ? ['animate-bounce'] : []">
-      <p class="w-10">801</p>
-      <p>〜</p>
-      <p>1000</p>
-      <p class="text-2xl">🥇</p>
-      <p class="w-10">5万</p>
-    </div>
+    <template v-for="(rank, index) in RANK_CONFIGS" :key="index">
+      <div class="flex justify-between items-center text-right px-4" :class="isInRange(rank.min, rank.max) ? ['animate-bounce'] : ['text-gray-400']">
+        <p class="w-10">{{ rank.min }}</p>
+        <p>〜</p>
+        <p>{{ rank.max }}</p>
+        <p class="text-2xl">{{ rank.icon }}</p>
+        <p class="w-10">{{ score >= rank.min ? rank.prize : '?' }}</p>
+      </div>
+    </template>
     <div class="flex-1"></div>
     <button @click="$emit('restart')" class="px-8 py-3 bg-white text-purple-600 font-bold text-lg rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-all">再来一局</button>
   </div>
