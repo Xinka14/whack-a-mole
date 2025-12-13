@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "format": "prettier . -w",
-    "lint": "eslint"
+    "lint": "eslint",
+    "assets": "pwa-assets-generator --preset minimal-2023 public/logo.png"
   },
   "lint-staged": {
     "*": [
@@ -25,6 +26,7 @@
     "@eslint/css": "^0.14.1",
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
+    "@vite-pwa/assets-generator": "^1.0.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.1",
