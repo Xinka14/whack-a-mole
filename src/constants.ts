@@ -27,7 +27,7 @@ export const MOLE_CONFIGS = {
   },
   hard: {
     duration: 700,
-    score: 50,
+    score: 30,
     type: 'hard',
     color: '#FF6347',
   },
