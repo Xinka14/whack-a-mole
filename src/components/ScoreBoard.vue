@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { GameState } from '../composables/useGame';
+import { MoleTypes, type GameState } from '../composables/useGame';
 import { MOLE_CONFIGS } from '../constants';
-import easy2 from '../assets/easy_2.png';
-import medium2 from '../assets/medium_2.png';
-import hard2 from '../assets/hard_2.png';
 
 interface Props {
   state: GameState;
@@ -14,13 +11,7 @@ defineEmits<{
   restart: [];
 }>();
 
-const count = computed(() => {
-  return {
-    easy: props.state.moles.filter((mole) => mole.type === 'easy' && mole.isHit === true).length,
-    medium: props.state.moles.filter((mole) => mole.type === 'medium' && mole.isHit === true).length,
-    hard: props.state.moles.filter((mole) => mole.type === 'hard' && mole.isHit === true).length,
-  };
-});
+const count = computed(() => Object.fromEntries(MoleTypes.map((type) => [type, props.state.moles.filter((mole) => mole.type === type && mole.isHit === true).length])));
 const score = computed(() => {
   return props.state.moles.reduce((total, mole) => {
     if (mole.isHit === false) {
@@ -38,27 +29,15 @@ const isInRange = computed(() => (min: number, max: number) => {
 <template>
   <div class="w-dvw h-dvh bg-linear-to-br from-violet-500 to-fuchsia-500 flex flex-col gap-2 p-4 text-white">
     <div class="text-center text-4xl py-2">得分</div>
-    <div class="flex justify-between items-center px-4">
-      <img :src="`${easy2}`" class="h-24" />
-      <p>×</p>
-      <p>{{ count.easy }}</p>
-      <p>=</p>
-      <p>{{ count.easy * MOLE_CONFIGS['easy'].score }}</p>
-    </div>
-    <div class="flex justify-between items-center px-4">
-      <img :src="`${medium2}`" class="h-24" />
-      <p>×</p>
-      <p>{{ count.medium }}</p>
-      <p>=</p>
-      <p>{{ count.medium * MOLE_CONFIGS['medium'].score }}</p>
-    </div>
-    <div class="flex justify-between items-center px-4">
-      <img :src="`${hard2}`" class="h-24" />
-      <p>×</p>
-      <p>{{ count.hard }}</p>
-      <p>=</p>
-      <p>{{ count.hard * MOLE_CONFIGS['hard'].score }}</p>
-    </div>
+    <template v-for="type in MoleTypes" :key="type">
+      <div class="flex justify-between items-center px-4">
+        <img :src="`${MOLE_CONFIGS[type].img.hit}`" class="h-24" />
+        <p>×</p>
+        <p>{{ count[type] }}</p>
+        <p>=</p>
+        <p>{{ (count[type] ?? 0) * MOLE_CONFIGS[type].score }}</p>
+      </div>
+    </template>
     <hr />
     <div class="text-right px-4">{{ score }}</div>
     <div class="flex-1"></div>
