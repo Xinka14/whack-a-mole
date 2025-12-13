@@ -1,7 +1,20 @@
 // 游戏常数配置
 
+// images
+import easy1 from './assets/easy_1.png';
+import easy2 from './assets/easy_2.png';
+import medium1 from './assets/medium_1.png';
+import medium2 from './assets/medium_2.png';
+import hard1 from './assets/hard_1.png';
+import hard2 from './assets/hard_2.png';
+// sounds
+import easy from './assets/easy.mp3';
+import medium from './assets/medium.mp3';
+import hard from './assets/hard.mp3';
+
 // 地鼠配置
 export const TOTAL_MOLES = 60; // 一局总地鼠数
+
 export const EASY_MOLES = 30; // 低难度地鼠
 export const MEDIUM_MOLES = 20; // 中难度地鼠
 export const HARD_MOLES = 10; // 高难度地鼠
@@ -17,19 +30,31 @@ export const MOLE_CONFIGS = {
     duration: 800,
     score: 10,
     type: 'easy',
-    color: '#90EE90',
+    img: {
+      normal: easy1,
+      hit: easy2,
+    },
+    sound: easy,
   },
   medium: {
     duration: 750,
     score: 20,
     type: 'medium',
-    color: '#FFD700',
+    img: {
+      normal: medium1,
+      hit: medium2,
+    },
+    sound: medium,
   },
   hard: {
     duration: 700,
     score: 30,
     type: 'hard',
-    color: '#FF6347',
+    img: {
+      normal: hard1,
+      hit: hard2,
+    },
+    sound: hard,
   },
 };
 export const MOLE_HIT_DURATION = 200;

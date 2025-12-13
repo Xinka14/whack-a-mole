@@ -1,6 +1,9 @@
 import { ref, computed } from 'vue';
 import { TOTAL_MOLES, EASY_MOLES, MEDIUM_MOLES, HARD_MOLES, INTERVAL_SLOPE, MIN_INTERVAL, MAX_INTERVAL, HOLE_ROWS, HOLE_COLS, MOLE_CONFIGS, HOLE_COOLDOWN, MOLE_HIT_DURATION } from '../constants';
 import { assertNotNull, createArrayByRange, getRandomElement, sleep } from '../utils';
+import { useSound } from './useSound';
+
+const { initSounds, playSound } = useSound();
 
 export interface GameState {
   countdown: number;
@@ -37,6 +40,7 @@ export function useGame(
 ) {
   const state = ref<GameState>(structuredClone(initState));
   let timer: number;
+  initSounds();
 
   const generatedCount = computed(() => {
     return {
@@ -176,6 +180,7 @@ export function useGame(
       ...state.value.moles[found]!,
       isHit: true,
     });
+    playSound(mole.type);
     window.setTimeout(() => hideMole(mole), MOLE_HIT_DURATION);
     console.log(`地鼠${mole.id}被打中了`);
   }

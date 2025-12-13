@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { GameState, Mole } from '../composables/useGame';
-import { HOLE_ROWS, HOLE_COLS } from '../constants';
-import easy1 from '../assets/easy_1.png';
-import easy2 from '../assets/easy_2.png';
-import medium1 from '../assets/medium_1.png';
-import medium2 from '../assets/medium_2.png';
-import hard1 from '../assets/hard_1.png';
-import hard2 from '../assets/hard_2.png';
+import { HOLE_ROWS, HOLE_COLS, MOLE_CONFIGS } from '../constants';
 
 interface Props {
   state: GameState;
@@ -20,15 +14,13 @@ const moleAtHole = computed(() => (holeId: number) => {
 });
 const imagePath = computed(() => (holeId: number) => {
   const mole = moleAtHole.value(holeId);
-  switch (mole?.type) {
-    case 'easy':
-      return mole.isHit ? easy2 : easy1;
-    case 'medium':
-      return mole.isHit ? medium2 : medium1;
-    case 'hard':
-      return mole.isHit ? hard2 : hard1;
-    default:
-      return '';
+  if (mole === undefined) {
+    return '';
+  }
+  if (mole.isHit === true) {
+    return MOLE_CONFIGS[mole.type].img.hit;
+  } else {
+    return MOLE_CONFIGS[mole.type].img.normal;
   }
 });
 </script>
