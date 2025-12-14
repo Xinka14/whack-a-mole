@@ -9,19 +9,28 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-const moleAtHole = computed(() => (holeId: number) => {
-  return props.state.moles.find((mole) => mole.isVisible === true && mole.hole.id === holeId);
-});
-const imagePath = computed(() => (holeId: number) => {
-  const mole = moleAtHole.value(holeId);
-  if (mole === undefined) {
-    return '';
-  }
-  if (mole.isHit === true) {
-    return MOLE_CONFIGS[mole.type].img.hit;
-  } else {
-    return MOLE_CONFIGS[mole.type].img.normal;
-  }
+const holesWithMole = computed(() => {
+  return props.state.holes.map((hole) => {
+    const mole = props.state.moles.find((mole) => mole.isVisible === true && mole.hole.id === hole.id);
+    let imagePath;
+    switch (mole?.isHit) {
+      case true:
+        imagePath = MOLE_CONFIGS[mole.type].img.hit;
+        break;
+      case false:
+        imagePath = MOLE_CONFIGS[mole.type].img.normal;
+        break;
+      default:
+        imagePath = '';
+        break;
+    }
+
+    return {
+      ...hole,
+      mole,
+      imagePath,
+    };
+  });
 });
 </script>
 
@@ -34,9 +43,9 @@ const imagePath = computed(() => (holeId: number) => {
 
     <!-- 地洞网格 -->
     <div class="flex-1 p-2 bg-green-200 grid gap-4 board">
-      <div v-for="hole in state.holes" :key="`hole-${hole.id}`" class="border-4 border-yellow-900 rounded-full bg-yellow-800 flex items-center justify-center">
+      <div v-for="hole in holesWithMole" :key="`hole-${hole.id}`" class="border-4 border-yellow-900 rounded-full bg-yellow-800 flex items-center justify-center">
         <transition name="bounce">
-          <div v-if="moleAtHole(hole.id)" :key="`mole-${moleAtHole(hole.id)!.id}`" class="w-3/4 h-3/4 mole transform transition-transform" :style="{ 'background-image': `url(${imagePath(hole.id)})` }" @click="hitMole(moleAtHole(hole.id))"></div>
+          <div v-if="hole.mole" class="w-3/4 h-3/4 mole" :style="{ 'background-image': `url(${hole.imagePath})` }" @click="hitMole(hole.mole)"></div>
         </transition>
       </div>
     </div>
@@ -57,6 +66,7 @@ const imagePath = computed(() => (holeId: number) => {
 .bounce-leave-active {
   animation: bounce-out 0.2s ease-in;
   transform-origin: bottom center;
+  pointer-events: none;
 }
 
 @keyframes bounce-in {
