@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import type { GameState, Mole } from '../composables/useGame';
 import { HOLE_ROWS, HOLE_COLS, MOLE_CONFIGS } from '../constants';
 
@@ -30,6 +30,16 @@ const holesWithMole = computed(() => {
       mole,
       imagePath,
     };
+  });
+});
+
+onMounted(() => {
+  // preload images
+  Object.values(MOLE_CONFIGS).forEach((config) => {
+    const img1 = new Image();
+    img1.src = config.img.normal;
+    const img2 = new Image();
+    img2.src = config.img.hit;
   });
 });
 </script>
