@@ -29,5 +29,8 @@ export default defineConfig([
     language: 'css/css',
     extends: ['css/recommended'],
   },
-  globalIgnores(['src/*.css']), // FIXME: workaround
+  globalIgnores([
+    'src/*.css', // FIXME: workaround
+    'dist/**',
+  ]),
 ]);
