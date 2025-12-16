@@ -70,18 +70,18 @@ export const RANK_CONFIGS = [
     min: 0,
     max: 60,
     icon: '🥉',
-    prize: '1万',
+    prize: '2万円',
   },
   {
     min: 61,
     max: 85,
     icon: '🥈',
-    prize: '2万',
+    prize: '5万円',
   },
   {
     min: 86,
     max: 100,
     icon: '🥇',
-    prize: '5万',
+    prize: '10万円',
   },
 ];
