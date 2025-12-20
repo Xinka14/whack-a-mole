@@ -53,16 +53,7 @@ export function useGame(
   const candidateHoles = computed(() => state.value.holes.filter((hole) => hole.isInUse === false));
   const candidateTypes = computed(() => {
     const types: MoleType[] = [];
-    if (generatedCount.value.easy < EASY_MOLES) {
-      types.push('easy');
-    }
-    if (generatedCount.value.medium < MEDIUM_MOLES) {
-      types.push('medium');
-    }
-    if (generatedCount.value.hard < HARD_MOLES) {
-      types.push('hard');
-    }
-    return types;
+    return types.concat(Array(EASY_MOLES - generatedCount.value.easy).fill('easy'), Array(MEDIUM_MOLES - generatedCount.value.medium).fill('medium'), Array(HARD_MOLES - generatedCount.value.hard).fill('hard'));
   });
 
   function resetGame() {
