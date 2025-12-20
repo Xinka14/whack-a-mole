@@ -69,6 +69,7 @@ export function useSound() {
     bgmSource.loop = true;
 
     const bgmGain = audioContext.createGain();
+    bgmGain.gain.value = 0.3;
     bgmSource.connect(bgmGain);
     bgmGain.connect(audioContext.destination);
 
