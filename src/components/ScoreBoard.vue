@@ -58,11 +58,10 @@ const prize = computed(() => {
         <p class="w-10">{{ rank.min }}</p>
         <p>〜</p>
         <p>{{ rank.max }}</p>
-        <p class="text-2xl" :class="isInRange(rank.min, rank.max) ? ['shake'] : ['opacity-25']" @click.stop="openPrize">{{ rank.icon }}</p>
+        <p class="text-2xl" :class="isInRange(rank.min, rank.max) ? ['shake'] : ['opacity-25', 'pointer-events-none']" @click.stop="openPrize">{{ rank.icon }}</p>
       </div>
     </template>
     <div class="flex-1"></div>
-    <button @click="$emit('restart')" class="px-8 py-3 bg-white text-purple-600 font-bold text-lg rounded-lg hover:bg-gray-100 disabled:opacity-50 transition-all">再来一局</button>
   </div>
   <Teleport to="body">
     <div v-if="showPrize" class="modal-mask" @click.self="closePrize">
@@ -72,6 +71,7 @@ const prize = computed(() => {
         <p class="text-xl">{{ prize }}</p>
         <marquee behavior="alternate">🎉🎉🎉</marquee>
         <marquee behavior="alternate" direction="right">😘😘😘</marquee>
+        <button @click="$emit('restart')" class="mt-8 px-8 py-3 bg-white text-purple-600 font-bold text-lg rounded-lg">再来一局</button>
       </div>
     </div>
   </Teleport>
@@ -155,7 +155,7 @@ const prize = computed(() => {
   padding: 24px 32px;
   border-radius: 12px;
   width: 80%;
-  height: 40%;
+  height: 60%;
 
   animation: scaleIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
