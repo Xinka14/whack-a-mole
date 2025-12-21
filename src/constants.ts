@@ -31,20 +31,20 @@ export const MOLE_CONFIGS = {
     score: 1,
     type: 'easy',
     img: {
-      normal: sk1,
-      hit: sk2,
+      normal: sx1,
+      hit: sx2,
     },
-    sound: sk,
+    sound: sx,
   },
   medium: {
     duration: 650,
     score: 2,
     type: 'medium',
     img: {
-      normal: sx1,
-      hit: sx2,
+      normal: sk1,
+      hit: sk2,
     },
-    sound: sx,
+    sound: sk,
   },
   hard: {
     duration: 600,
