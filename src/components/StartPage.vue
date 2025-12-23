@@ -11,6 +11,6 @@ defineEmits<{
     <p class="w-50 text-xl">一边出气，一边赚钱!</p>
     <p class="w-50 text-xl mb-8">分数越高，奖金越多！</p>
     <button @click="$emit('start')" class="px-8 py-3 bg-white text-purple-600 font-bold text-lg rounded-lg">开始游戏</button>
-    <p class="fixed right-2 bottom-2">Ver 1.2.18/p></p>
+    <p class="fixed right-2 bottom-2">Ver 1.2.18</p>
   </div>
 </template>
